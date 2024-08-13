@@ -1,0 +1,40 @@
+@import '../../../_common/styles/common.scss';
+
+#banner{
+ width: 160px;
+ height: 600px;
+}
+
+
+
+#legalBtn{	
+	@include pos(110, 0);	
+	width: 80px;
+	opacity: 0;
+}
+
+
+
+
+#olg{
+	width: 87px;
+	height: 49px;
+	@include pos(0, 555);
+	// opacity: .5 !important;
+	
+}
+
+
+.f1-bg_1 {
+	@include pos(0, -600);
+	// @include pos(0, 0);
+	.f1-bg_1b{
+		@include pos-scalexy(0, 1200, .5, -.5);
+	}
+}
+
+.f4-o{
+	@include pos-scale(50, 188, .5);
+	transform-origin: 50% 50%;
+}
+
