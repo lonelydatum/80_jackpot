@@ -1,0 +1,44 @@
+@import '../../../_common/styles/common.scss';
+
+#banner{
+ width: 300px;
+ height: 250px;
+}
+
+
+
+#legalBtn{	
+	@include pos(220, 0);	
+	width: 80px;
+	opacity: 0;
+
+}
+
+#olg{
+	width: 108px;
+	height: 69px;
+	@include pos(0, 193);
+}
+
+.frame2{
+	background: #84bd00;
+	// opacity:1;
+}
+
+.record_txt{
+	// @include pos-scale(-900, 78, .5);
+}
+
+canvas {
+  display: block;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#mySVG{
+	z-index: 10;
+	position: absolute;
+	top:0;
+	left:0;
+}

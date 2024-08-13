@@ -36,64 +36,89 @@ function init(){
 let data_ = {}
 const ease = "power2.out"
 
-function pan(tl, a, b, delay){
-	
-	const TIME_XXX = w/300
-	let TIME = Math.min(TIME_XXX*.7, 1.1)
-	// TIME = Math.max(TIME, 1.3)
-
-	
-	tl.set(b, {opacity:1})
-	tl.add(a, delay)
-	tl.to(a, {duration:TIME, x:-w, ease:"power4.out"}, a)
-	tl.from(b, {duration:TIME, x:w, ease:"power4.out"}, a)
-}
 
 
 function start(data){
 	
-	// const read
 	
 	const tl = init()
-	const TIME_XXX = h/250
-	let TIME = Math.min(TIME_XXX*2, 2.8)
-	TIME = Math.max(TIME, 1.3)
-	
-	const F1_Y = -250
-	
-	tl.add("lax-1")
-	tl.to(".f1-bg_1", {duration:TIME*1.2, y:0}, "lax-1")
-	tl.from(".f1-balloon-1", {y:F1_Y, duration:TIME*.8, ease:ease}, "lax-1")
-	tl.from(".f1-balloon-2", {y:F1_Y, duration:TIME*.9,  ease:ease}, "lax-1")
-	tl.from(".f1-balloon-3", {y:F1_Y, duration:TIME*1,  ease:ease}, "lax-1")
-	tl.from(".f1-txt", {y:F1_Y, duration:TIME*1.1,  ease:"back.out"}, "lax-1")
-	tl.from(".f1-max", {y:F1_Y, duration:TIME*1.2,  ease:ease}, "lax-1")
 
-	pan(tl, ".frame1", '.frame2', "+=.5")
-	
+	tl.set(".end_record", {x:-900, y:78})
 
-	tl.from(".f2-txta", {duration:.3, x:-100, y:"+=20", opacity:0, ease:"back.out"})
-	tl.from(".f2-txtb", {duration:.3, x:-100, y:"+=20", opacity:0, ease:"back.out"})
+	tl.from(".start_txta", {duration:.3,  x:"-=200", y:"+=20", opacity:0}, "+=.2")
+	tl.from(".start_txtb", {duration:.3,  x:"-=200", y:"+=20", opacity:0})
+	tl.from(".start_txtc", {duration:.3,  x:"-=200", y:"+=20", opacity:0})
+
+	tl.from(".start_hand", {duration:.6, ease:"power3.out",  y:250})
+	
+	tl.add("f2", "+=1.2")
+	tl.set(".frame2", {opacity:1})
+	tl.to(".frame1", {duration:.6,  y:-250}, "f2")
+	tl.from(".frame2", {duration:.6,  y:250}, "f2")
+	tl.add(confetti, "f2")
+
 	
 
-	pan(tl, ".frame2", '.frame3', "+=2")
+	tl.from(".end_0", {duration:.6,  y:-size.h}, "+=.3")
+	tl.from(".end_1", {duration:.3,  opacity:0, x:"-=50"}, "+=.3")
+	tl.from(".end_2", {duration:.3,  opacity:0, x:"-=50"})
+	tl.from([".end_3", ".end_cta"], {duration:.3,  opacity:0}, "+=.2")
 
-	tl.from(".f3-txta", {duration:.5, y:"+=20", x:-100, opacity:0, ease:"back.out"}, "-=.3")
-	tl.from(".f3-txtb", {duration:.5, opacity:0, ease:"back.out"})
+
+	tl.from(".bg", {duration:.6,  opacity:0})
+
+	tl.add("ticker")
+
+	tl.to(".end_record", {ease:"none", duration:.5, x:-600, y:52}, "ticker")
+	tl.to(".end_record", {ease:"none", duration:2, x:0, y:0})
+	tl.from(".end_logo", {duration:.3,  opacity:0}, "ticker+=1")
+	tl.from(".end_smart", {duration:.3,  opacity:0}, "ticker+=1")
+	tl.add(olg, "ticker+=1.5")
+
 	
-
-	pan(tl, ".frame3", '.frame4', "+=2.3")
-
-	tl.from(".f4-o", {duration:.5, scale:0,  rotate:70, ease:"back.out"})
-	
-	tl.add("end", "+=.3")	
-	tl.from(".f4-cta", {duration:.3, opacity:0, ease:"back.out"}, "end")
-	tl.add(olg(), "end")
-
-	// tl.play(".frame3")
 
 }
 
+
+function confetti(){
+
+
+var svgNS = "http://www.w3.org/2000/svg";  
+
+var total = 50;
+var w = 300;
+var h = 250;
+const colors = ["#bdddff", "#2d73bb", "#0d539b", "#8bc4ff", "#3f1fff"]
+const REPEAT = 6
+for (let i=0; i<total; i++){ 
+	const color = Math.floor(Math.random() * colors.length)
+	console.log(color);
+	const className = `dot_${i}`
+	var myCircle = document.createElementNS(svgNS,"rect"); 
+	myCircle.setAttributeNS(null,"class", className); 
+	myCircle.setAttributeNS(null,"width",4);
+	myCircle.setAttributeNS(null,"height",6);
+	document.getElementById("mySVG").appendChild(myCircle);  
+	TweenMax.set(`.${className}`,{x:Random(w),y:0,rotation:Random(180),scale:Random(0.5)+0.5,fill:colors[color]});
+	animm(`.${className}`);
+}
+
+function animm(elm){   
+	TweenMax.to(elm,Random(2)+.5,{y:h+20,ease:Linear.easeNone,repeat:REPEAT, delay:-5});
+	TweenMax.to(elm,Random(3)+.5,{x:'+=70', repeat:REPEAT,yoyo:true,ease:Sine.easeInOut})
+	TweenMax.to(elm,Random(3)+.5,{scaleX:0.2,rotation:Random(360), repeat:REPEAT,yoyo:true,ease:Sine.easeInOut})
+	TweenMax.to(elm,Random(1)+0.5,{repeat:REPEAT,yoyo:true,ease:Sine.easeInOut})
+};
+
+function Random (max) {	
+	return Math.random()*max;
+}
+
+function random(min, max) {
+	return min + Math.floor( Math.random() * (max - min));
+}
+	
+}
 
 
 
