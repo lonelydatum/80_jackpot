@@ -56,8 +56,8 @@ function start(data) {
 	tl.from(".frame2", { duration: .6, y: 250 }, "f2");
 	tl.add(confetti, "f2+=.7");
 
-	tl.from(".end_0", { duration: .6, y: -size.h }, "+=.3");
-	tl.from(".end_1", { duration: .3, opacity: 0, x: "-=50" }, "+=.3");
+	tl.from(".end_0", { duration: .6, y: -size.h }, "-=.3");
+	tl.from(".end_1", { duration: .3, opacity: 0, x: "-=50" });
 	tl.from(".end_2", { duration: .3, opacity: 0, x: "-=50" });
 	tl.from([".end_3", ".end_cta"], { duration: .3, opacity: 0 }, "+=.2");
 
