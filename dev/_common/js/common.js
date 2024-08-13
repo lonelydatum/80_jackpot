@@ -65,12 +65,12 @@ function start(data){
 	tl.from([".end_3", ".end_cta"], {duration:.3,  opacity:0}, "+=.2")
 
 
-	tl.from(".bg", {duration:.6,  opacity:0})
+	tl.from(".bg", {duration:2,  y:-size.h, opacity:0})
 
 	tl.add("ticker")
 
 	tl.to(".end_record", {ease:"none", duration:.5, x:-600, y:52}, "ticker")
-	tl.to(".end_record", {ease:"none", duration:2, x:0, y:0})
+	tl.to(".end_record", {ease:"none", duration:3, x:0, y:0})
 	tl.from(".end_logo", {duration:.3,  opacity:0}, "ticker+=1")
 	tl.from(".end_smart", {duration:.3,  opacity:0}, "ticker+=1")
 	tl.add(olg, "ticker+=1.5")
